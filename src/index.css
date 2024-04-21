@@ -11,18 +11,30 @@ body{
 main{
   width: 375px;
   padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.job_profile{
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: -24px;
 }
 .job_list{
   background-color: white;
-  margin-bottom: 12px;
   height: 240px;
   padding: 20px;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
+  position: relative;
+  box-shadow: 
+    2px 2px 60px gray
 }
 .job_details{
   height: 55%;
+  align-content: center;
 }
 .job_description{
   display: flex;
