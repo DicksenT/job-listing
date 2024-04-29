@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import mobileHeader from '/images/bg-header-mobile.svg'
+import desktopHeader from '/images/bg-header-desktop.svg'
 import Joblist from './Joblist'
 import axios from 'axios'
 function App() {
   const [data, setData] = useState()
+  const [width, setWidth] = useState(window.innerWidth)
   useEffect(()=>{
     const getData = async() =>{
       try{
@@ -16,17 +18,25 @@ function App() {
     }
     getData()
   },[])
+
   useEffect(() =>{
-    console.log(data)
-  },[data])
+    const handleResize = () => {
+      setWidth(window.innerWidth)
+    }
+    window.addEventListener('resize', handleResize)
+    return () =>{
+      window.removeEventListener('resize', handleResize)
+    } 
+  },[])
+
   return (
-    <div>
+    <div className='mainApp'>
       <header>
-        <img src={mobileHeader} alt="" />
+        <img src={width < 1024 ? mobileHeader : desktopHeader} alt="" />
       </header>
       <main>
           {data && data.map((dt)=>(
-              <Joblist data={dt}/>
+              <Joblist data={dt} width={width}/>
           ))}
           
       </main>
