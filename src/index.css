@@ -38,7 +38,8 @@ main{
   box-shadow: 10px 10px 10px gray;
 }
 .new_border{
-  border-left: 20px solid hsl(180, 29%, 50%);
+  border-left: 6px solid hsl(180, 29%, 50%);
+  padding-left: 14px;
 }
 .job_details{
   height: 55%;
@@ -48,10 +49,31 @@ main{
   display: flex;
   flex-direction: column;
   gap: 14px;
-  
+}
+.company_status{
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .company_name{
   color: hsl(180, 29%, 50%);
+  font-weight: 800;
+}
+.new,
+.featured{
+  text-transform: uppercase;
+  padding: 6px 8px;
+  text-align: center;
+  border-radius: 12px;
+  color: white;
+  font-weight: 500;
+  font-size: 11px;
+}
+.new{
+  background-color: hsl(180, 29%, 50%);
+}
+.featured{
+  background-color: black;
 }
 .job_status{
   display: flex;
@@ -99,5 +121,8 @@ main{
     position: static;
     width: 88px;
     height: 88px;
+  }
+  .new_border{
+    padding-left: 36px;
   }
 }
