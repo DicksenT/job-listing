@@ -3,6 +3,7 @@ import mobileHeader from '/images/bg-header-mobile.svg'
 import desktopHeader from '/images/bg-header-desktop.svg'
 import Joblist from './Joblist'
 import axios from 'axios'
+
 function App() {
   const [data, setData] = useState()
   const [width, setWidth] = useState(window.innerWidth)
