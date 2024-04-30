@@ -9,12 +9,9 @@ function Joblist(props){
                         <p className="company_name">
                         {data.company}
                         </p>
-                        <p className="new">
-
-                        </p>
-                        <p className="featured">
-                            
-                        </p>
+                        {data.new ? <p className="new">new!</p> : ''}
+                        {data.featured ? <p className="featured">featured</p>:
+                        ""}
                     </div>
                     <h4 className="job_title">
                         {data.position}
