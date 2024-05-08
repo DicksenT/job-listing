@@ -1,5 +1,6 @@
 function Joblist(props){
-    const {data, width} = props   
+    const {data, width, addSearch} = props
+       
     return(
         <article className={`job_list ${data.featured ? 'new_border': ''}`}>
             <div className="job_details">
@@ -26,13 +27,13 @@ function Joblist(props){
                 </div>
             </div>
             <div className={`requirement ${width < 1024 ? 'requirement_border' : ''}`}>
-                <p>{data.role}</p>
-                <p>{data.level}</p>
+                <p onClick={() => addSearch(data.role)}>{data.role}</p>
+                <p onClick={() => addSearch(data.level)}>{data.level}</p>
                 {data.languages.map((dl) =>(
-                    <p>{dl}</p>
+                    <p key={dl} onClick={() => addSearch(dl)}>{dl}</p>
                 ))}
                 {data.tools.map((dt)=>(
-                    <p>{dt}</p>
+                    <p key={dt} onClick={() => addSearch(dt)}>{dt}</p>
                 ))}
             </div>
         </article>
