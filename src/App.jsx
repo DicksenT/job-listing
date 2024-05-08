@@ -30,14 +30,55 @@ function App() {
     } 
   },[])
 
+  const [search, setSearch] = useState([])
+  const [filteredData, setFilteredData] = useState()
+  useEffect(() =>{
+    setFilteredData(data)
+  },[data])
+    const addSearch = (newSearch) =>{
+      if(!search.includes(newSearch)){
+        setSearch(prevSearch => [...prevSearch, newSearch])
+      }
+  }
+  const deleteSearch =(del) =>{
+    setFilteredData(data) 
+    setSearch(prevSearch => prevSearch.filter(item => item != del))
+       
+  }
+    
+  useEffect(() =>{
+    search.map((s) => {
+      setFilteredData(prevFilteredData => prevFilteredData.filter(data =>
+        data.role === s ||
+        data.level === s ||
+        data.languages.includes(s) ||
+        data.tools.includes(s)
+      ))
+    })
+  },[search])
+  
+
   return (
     <div className='mainApp'>
       <header>
         <img src={width < 1024 ? mobileHeader : desktopHeader} alt="" />
       </header>
       <main>
-          {data && data.map((dt)=>(
-              <Joblist data={dt} width={width}/>
+          <div className="searchBar">
+            <div className="searchList">
+            {search.map((s) =>(
+              <div key={s} className="searchInd">
+                <p className="searchText">
+                {s}
+                </p>
+                <button onClick={() => deleteSearch(s)} className="deleteBtn">X</button>
+                </div> 
+            ))}
+            </div>
+            <p className="clearBtn">Clear</p>
+          </div>
+          {filteredData && filteredData.map((dt)=>(
+              <Joblist data={dt} width={width} key={dt.id} addSearch={addSearch}/>
           ))}
           
       </main>
