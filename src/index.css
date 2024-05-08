@@ -20,6 +20,9 @@ main{
   flex-direction: column;
   justify-content: center;
   gap: 40px;
+  margin-top: 60px;
+  position: relative;
+  
 }
 .job_profile{
   width: 48px;
@@ -98,6 +101,63 @@ main{
   padding: 8px 12px;
   font-weight: 700;
   font-size: 15px;
+  cursor: pointer;
+}
+.searchBar{
+  background-color: white;
+  padding: 20px;
+  width: 327px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: -87.5px;
+}
+.searchList{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 90%;
+}
+.searchInd{
+  background-color: hsl(180, 31%, 95%);
+  height: 28px;
+  padding-left: 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+}
+.searchText{
+  margin-right: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsl(180, 29%, 50%);
+}
+.deleteBtn{
+  height: 100%;
+  width: 20px;
+  font-size: 16px;
+  border: none;
+  background-color: hsl(180, 29%, 50%);
+  color: white;
+  font-weight: 500;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  cursor: pointer;
+}
+.deleteBtn:hover{
+  background-color: hsl(180, 14%, 20%);
+}
+.clearBtn{
+  align-content: center;
+  color: hsl(180, 29%, 50%);
+  font-weight: 600;
+  transition: 0.4s;
+  cursor: pointer;
+}
+.clearBtn:hover{
+  text-decoration: underline;
 }
 @media (min-width:1024px) {
   main{
