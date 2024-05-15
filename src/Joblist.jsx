@@ -1,5 +1,5 @@
 function Joblist(props){
-    const {data, width, addSearch} = props
+    const {data, width, addSearch, search} = props
        
     return(
         <article className={`job_list ${data.featured ? 'new_border': ''}`}>
@@ -27,13 +27,13 @@ function Joblist(props){
                 </div>
             </div>
             <div className={`requirement ${width < 1024 ? 'requirement_border' : ''}`}>
-                <p onClick={() => addSearch(data.role)}>{data.role}</p>
-                <p onClick={() => addSearch(data.level)}>{data.level}</p>
+                <p onClick={() => addSearch(data.role)} className={search.includes(data.role) ? 'active' : ''}>{data.role}</p>
+                <p onClick={() => addSearch(data.level)} className={search.includes(data.level) ? 'active' : ''}>{data.level}</p>
                 {data.languages.map((dl) =>(
-                    <p key={dl} onClick={() => addSearch(dl)}>{dl}</p>
+                    <p key={dl} onClick={() => addSearch(dl) } className={search.includes(dl) ? 'active' : ''}>{dl}</p>
                 ))}
                 {data.tools.map((dt)=>(
-                    <p key={dt} onClick={() => addSearch(dt)}>{dt}</p>
+                    <p key={dt} onClick={() => addSearch(dt)} className={search.includes(dt) ? 'active' : ''}>{dt}</p>
                 ))}
             </div>
         </article>
