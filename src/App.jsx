@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import mobileHeader from '/images/bg-header-mobile.svg'
 import desktopHeader from '/images/bg-header-desktop.svg'
 import Joblist from './Joblist'
@@ -35,7 +35,7 @@ function App() {
   useEffect(() =>{
     setFilteredData(data)
   },[data])
-    const addSearch = (newSearch) =>{
+  const addSearch = (newSearch) =>{
       if(!search.includes(newSearch)){
         setSearch(prevSearch => [...prevSearch, newSearch])
       }
@@ -45,7 +45,12 @@ function App() {
     setSearch(prevSearch => prevSearch.filter(item => item != del))
        
   }
-    
+
+  const clearSearch = () =>{
+    setSearch([])
+    setFilteredData(data)
+  }
+      
   useEffect(() =>{
     search.map((s) => {
       setFilteredData(prevFilteredData => prevFilteredData.filter(data =>
@@ -55,8 +60,13 @@ function App() {
         data.tools.includes(s)
       ))
     })
-  },[search])
-  
+  },[search])  
+
+  const searchBar = document.querySelector('.searchBar')
+  const myRef = useRef()
+  if(searchBar){
+    myRef.current = searchBar.clientHeight
+  }
 
   return (
     <div className='mainApp'>
@@ -64,7 +74,7 @@ function App() {
         <img src={width < 1024 ? mobileHeader : desktopHeader} alt="" />
       </header>
       <main>
-          <div className="searchBar">
+          {search.length > 0 && <div className="searchBar" style={{top: `-${(myRef.current * 0.5) + 64}px`}}>
             <div className="searchList">
             {search.map((s) =>(
               <div key={s} className="searchInd">
@@ -75,10 +85,10 @@ function App() {
                 </div> 
             ))}
             </div>
-            <p className="clearBtn">Clear</p>
-          </div>
+            <p className="clearBtn" onClick={clearSearch}>Clear</p>
+          </div>}
           {filteredData && filteredData.map((dt)=>(
-              <Joblist data={dt} width={width} key={dt.id} addSearch={addSearch}/>
+              <Joblist data={dt} width={width} key={dt.id} addSearch={addSearch} search={search}/>
           ))}
           
       </main>
