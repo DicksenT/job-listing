@@ -156,8 +156,9 @@ main{
   transition: 0.4s;
   cursor: pointer;
 }
-.clearBtn:hover{
-  text-decoration: underline;
+.requirement .active{
+  color: hsl(180, 52%, 96%);
+  background-color: hsl(180, 29%, 50%);
 }
 @media (min-width:1024px) {
   main{
@@ -184,5 +185,8 @@ main{
   }
   .new_border{
     padding-left: 36px;
+  }
+  .searchBar{
+    width: 976px;
   }
 }
